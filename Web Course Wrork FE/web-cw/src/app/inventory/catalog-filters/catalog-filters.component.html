@@ -1,0 +1,21 @@
+<mat-card class="container">
+  <form [formGroup]="formGroup" class="filters" (ngSubmit)="onSubmit()">
+
+    <mat-form-field appearance="fill">
+      <mat-label>Product code</mat-label>
+      <input matInput formControlName="code">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Category</mat-label>
+        <mat-select formControlName="category">
+        <mat-option value="food">Food</mat-option>
+        <mat-option value="construction">Construction</mat-option>
+        <mat-option value="office_materials">Office Materials</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <button mat-raised-button type="submit" color="primary">Filter</button>
+    <button mat-raised-button color="accent" (click)="reset()">Clear</button>
+  </form>
+</mat-card>
