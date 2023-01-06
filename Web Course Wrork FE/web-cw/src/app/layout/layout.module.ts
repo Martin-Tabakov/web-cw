@@ -4,11 +4,12 @@ import { LayoutComponent } from './layout/layout.component';
 import { InventoryModule } from '../inventory/inventory.module';
 import { AppRoutingModule } from '../app-routing.module';
 import { SharedModule } from '../shared/shared.module';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 
 
 @NgModule({
-  declarations: [LayoutComponent],
+  declarations: [LayoutComponent, NotFoundComponent],
   imports: [
     CommonModule,
     InventoryModule,

@@ -1,37 +1,37 @@
 <mat-toolbar color="primary">
-    <button mat-button>
-      <mat-icon>home</mat-icon>
-      Home Page
-    </button>
+  <button mat-button (click)="homeButtonClicked()">
+    <mat-icon>home</mat-icon>
+    Home Page
+  </button>
 
-    <button mat-button *ngIf="!isLoggedIn" [routerLink]="['/login']">
-      <mat-icon>login</mat-icon>
-        Log In
-    </button>
+  <button mat-button *ngIf="!isLoggedIn" [routerLink]="['/login']">
+    <mat-icon>login</mat-icon>
+    Log In
+  </button>
 
-    <button mat-button *ngIf="isLoggedIn" [routerLink]="['/offers']">
-      <mat-icon>list</mat-icon>
-        Job Offers
-    </button>
+  <button mat-button *ngIf="!isLoggedIn" [routerLink]="['/register']">
+    <mat-icon>person</mat-icon>
+    Register
+  </button>
 
-    <button mat-button *ngIf="isLoggedIn" (click)="logout()">
-      <mat-icon>house</mat-icon>
-        Log Out
-    </button>
-    
-    <button mat-button *ngIf="isLoggedIn" [routerLink]="['/offer-new']">
-      <mat-icon>add_box</mat-icon>
-        New Offer
-    </button>
+  <button mat-button *ngIf="isLoggedIn" [routerLink]="['/catalog']">
+    <mat-icon>list</mat-icon>
+    Catalog
+  </button>
 
-    <button mat-button *ngIf="isLoggedIn" (click)="routeToProfile()" >
-      <mat-icon>person_outline</mat-icon>
-        Profile
-    </button>
-    
-    <button mat-button *ngIf="isLoggedIn" (click)="deleteAccount()">
-      <mat-icon>delete</mat-icon>
-        Delete Account
-    </button>
+  <button mat-button *ngIf="isLoggedIn" (click)="logout()">
+    <mat-icon>exit_to_app</mat-icon>
+    Log Out
+  </button>
 
-  </mat-toolbar>
+  <button mat-button *ngIf="!isLoggedIn" (click)="forceLogin()">
+    <mat-icon>exit_to_app</mat-icon>
+    Force login
+  </button>
+
+  <button mat-button *ngIf="isLoggedIn" [routerLink]="['/new']">
+    <mat-icon>add_box</mat-icon>
+    Add Item
+  </button>
+
+</mat-toolbar>
