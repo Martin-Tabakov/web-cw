@@ -1,11 +1,35 @@
+using BackEnd.Services;
+using BackEnd.Services.Interfaces;
+using MongoDB.Driver;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+var connStringMongo = builder.Configuration["connectionStringMongo"];
+
+var client = new MongoClient(connStringMongo);
+builder.Services.AddSingleton <MongoClient>(client);
+
+builder.Services.AddTransient<IInventory, Inventory>();
+
+builder.Services.AddAutoMapper(typeof(Program).Assembly);
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("frontend",
+        policy =>
+        {
+            policy.WithOrigins("http://localhost:4200")
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+        });
+});
 
 var app = builder.Build();
 
@@ -16,8 +40,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
-
+app.UseCors("frontend");
+//app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
