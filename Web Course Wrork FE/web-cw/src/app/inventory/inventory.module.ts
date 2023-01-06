@@ -8,6 +8,7 @@ import { CatalogGalleryComponent } from './catalog-gallery/catalog-gallery.compo
 import { ItemDetailsComponent } from './item-details/item-details.component';
 import { RouterModule } from '@angular/router';
 import { ItemEditComponent } from './item-edit/item-edit.component';
+import { ItemNewComponent } from './item-new/item-new.component';
 
 
 
@@ -17,7 +18,8 @@ import { ItemEditComponent } from './item-edit/item-edit.component';
     CatalogFiltersComponent,
     CatalogGalleryComponent,
     ItemDetailsComponent,
-    ItemEditComponent
+    ItemEditComponent,
+    ItemNewComponent
   ],
   imports: [
     CommonModule,

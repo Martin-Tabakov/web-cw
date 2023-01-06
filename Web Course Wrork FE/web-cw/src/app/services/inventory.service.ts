@@ -40,10 +40,26 @@ export class InventoryService {
     }
 
     let url = `${environment.inventoryBackEndUrl}`;
-    
-    console.log(body)
 
     return this.httpClient.patch<item_return_dto>(url, body, { });
+  }
+
+  public create(item: any): Observable<item_return_dto> {
+    let body = {
+      "name": item.name,
+      "description": item.description,
+      "purchasePrice": item.purchasePrice,
+      "retailPrice": item.retailPrice,
+      "quantity": item.quantity,
+      "productCode": item.code,
+      "category":Number.parseInt(item.category)
+    }
+
+    let url = `${environment.inventoryBackEndUrl}`;
+
+    console.log(body);
+
+    return this.httpClient.post<item_return_dto>(url, body, { });
   }
 
   public delete(id:string | undefined): Observable<boolean> {

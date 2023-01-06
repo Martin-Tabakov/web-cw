@@ -9,7 +9,7 @@ import { InventoryService } from 'src/app/services/inventory.service';
 })
 export class CatalogGalleryComponent implements OnInit {
 
-  dataSource: catalog_item[] = [{name:"name",category:1,retailPrice:1.2}];
+  dataSource: catalog_item[] = [];
 
   displayedColumns = ["name","category","price","view"];
 
