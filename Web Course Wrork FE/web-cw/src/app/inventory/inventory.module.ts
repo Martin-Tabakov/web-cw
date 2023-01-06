@@ -5,6 +5,8 @@ import { MaterialModule } from '../shared/material.module';
 import { CatalogFiltersComponent } from './catalog-filters/catalog-filters.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CatalogGalleryComponent } from './catalog-gallery/catalog-gallery.component';
+import { ItemDetailsComponent } from './item-details/item-details.component';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -12,12 +14,14 @@ import { CatalogGalleryComponent } from './catalog-gallery/catalog-gallery.compo
   declarations: [
     CatalogComponent,
     CatalogFiltersComponent,
-    CatalogGalleryComponent
+    CatalogGalleryComponent,
+    ItemDetailsComponent
   ],
   imports: [
     CommonModule,
     MaterialModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterModule
   ]
 })
 export class InventoryModule { }
