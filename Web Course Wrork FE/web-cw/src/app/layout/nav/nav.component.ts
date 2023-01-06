@@ -17,15 +17,20 @@ export class NavComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
+    this.identityService.loggedIn$.subscribe(next => this.isLoggedIn = next);
   }
 
   logout(): void {
     this.identityService.logout();
-    this.router.navigate(["/login"]);
+    this.router.navigate(["login"]);
   }
 
   homeButtonClicked(): void {
     if(this.isLoggedIn) this.router.navigate(["catalog"]);
     else this.router.navigate(["login"]);
+  }
+
+  forceLogin(): void {
+    this.identityService.loggedIn.next(true);
   }
 }
