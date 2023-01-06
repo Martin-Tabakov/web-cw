@@ -7,6 +7,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { CatalogGalleryComponent } from './catalog-gallery/catalog-gallery.component';
 import { ItemDetailsComponent } from './item-details/item-details.component';
 import { RouterModule } from '@angular/router';
+import { ItemEditComponent } from './item-edit/item-edit.component';
 
 
 
@@ -15,7 +16,8 @@ import { RouterModule } from '@angular/router';
     CatalogComponent,
     CatalogFiltersComponent,
     CatalogGalleryComponent,
-    ItemDetailsComponent
+    ItemDetailsComponent,
+    ItemEditComponent
   ],
   imports: [
     CommonModule,

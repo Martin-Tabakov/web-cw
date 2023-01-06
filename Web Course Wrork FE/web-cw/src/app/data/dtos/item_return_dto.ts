@@ -5,6 +5,6 @@ export interface item_return_dto {
     purchasePrice:number,
     retailPrice:number,
     quantity:number,
-    productionCode:string,
-    category:string
+    productCode:string,
+    category:number
 }

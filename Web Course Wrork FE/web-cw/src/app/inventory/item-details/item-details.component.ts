@@ -32,13 +32,6 @@ export class ItemDetailsComponent implements OnInit {
 
   }
 
-  edit( id: string | undefined): void {
-    // this.offerService.giveReview(isPositive, id, this.identityService.getUserId()).subscribe(next =>{
-    //   console.log(next);
-    //   if(this.offer) this.offer.likes = next;
-    // });
-  }
-
   delete(id: string | undefined): void {
     this.inventoryService.delete(id).subscribe( next => {
       if(next) this.router.navigate(['catalog'])

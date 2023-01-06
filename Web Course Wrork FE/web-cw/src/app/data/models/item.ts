@@ -6,7 +6,7 @@ export class item {
         public purchasePrice:number,
         public retailPrice:number,
         public quantity:number,
-        public productionCode:string,
-        public category:string
+        public productCode:string,
+        public category:number
         ) {}
 }
