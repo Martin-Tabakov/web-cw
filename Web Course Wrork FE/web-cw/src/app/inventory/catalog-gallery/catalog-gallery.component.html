@@ -1,6 +1,18 @@
 <mat-card class=" container">
 
-  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 gallery">
+  <mat-paginator c #paginator
+               class="demo-paginator"
+               (page)="handlePageEvent($event)"
+               [hidePageSize]="true"
+               [length]="length"
+               [disabled]="disabled"
+               [pageSize]="pageSize"
+               [showFirstLastButtons]="showFirstLastButtons"
+               [pageIndex]="pageIndex"
+               aria-label="Select page">
+</mat-paginator>
+
+  <table mat-table [dataSource]="paginatedData" class="mat-elevation-z8 gallery">
   
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef> Name </th>
