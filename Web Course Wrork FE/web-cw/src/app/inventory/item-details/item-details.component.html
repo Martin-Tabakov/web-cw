@@ -14,7 +14,7 @@
     <button class="spaced-button" mat-raised-button color="primary" [routerLink]="['/edit', item?.id,]">
       <mat-icon>edit</mat-icon> Edit
     </button>
-    <button class="spaced-button" mat-raised-button color="accent" (click)="delete(item?.id)">
+    <button class="spaced-button" mat-raised-button color="accent" (click)="initiateDelete(item?.id)">
       <mat-icon>delete</mat-icon>Delete
     </button>
   </mat-card-actions>

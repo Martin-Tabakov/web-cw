@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Observable, of } from 'rxjs';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 
 @Injectable({
@@ -14,5 +15,9 @@ export class IdentityService {
 
   logout(): void {
     this.loggedIn.next(false);
+  }
+
+  login(): Observable<boolean> {
+    return of(false);
   }
 }
