@@ -30,7 +30,7 @@ export class CatalogGalleryComponent implements OnInit {
   dataSource: catalog_item[] = [];
   paginatedData: catalog_item[] = [];
 
-  displayedColumns = ["name","category","price","view"];
+  displayedColumns = ["name","category","productCode","price","view"];
 
   constructor(private inventoryService:InventoryService) { }
 
