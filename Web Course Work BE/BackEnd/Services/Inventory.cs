@@ -51,6 +51,10 @@ namespace BackEnd.Services
         public async Task<ItemReturnDto> Create(ItemCreateDto dto)
         {
             var item = _mapper.Map<Item>(dto);
+
+            bool isCodeDuplicate = await IsCodeDuplicate(item.ProductCode, item.Id);
+            if (isCodeDuplicate) return null;
+
             await _inventoryCollection.InsertOneAsync(item);
 
             return _mapper.Map<ItemReturnDto>(item);
@@ -60,9 +64,17 @@ namespace BackEnd.Services
         {
             var item = _mapper.Map<Item>(dto);
 
+            bool isCodeDuplicate = await IsCodeDuplicate(item.ProductCode, item.Id);
+            if (isCodeDuplicate) return null;
+
             var res = await _inventoryCollection.ReplaceOneAsync(x => x.Id.Equals(item.Id), item);
 
             return _mapper.Map<ItemReturnDto>(item);
+        }
+
+        private async Task<bool> IsCodeDuplicate(string itemCode, Guid id)
+        {
+            return await this._inventoryCollection.CountDocumentsAsync(item => item.Id != id && item.ProductCode == itemCode) >= 1;
         }
     }
 }

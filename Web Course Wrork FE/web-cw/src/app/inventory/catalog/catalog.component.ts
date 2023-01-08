@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { filterData } from '../catalog-filters/catalog-filters.component';
 
 @Component({
   selector: 'cw-catalog',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CatalogComponent implements OnInit {
 
+  filter: filterData | undefined;
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  passFilters( data: filterData): any {
+    this.filter = data;
   }
 
 }

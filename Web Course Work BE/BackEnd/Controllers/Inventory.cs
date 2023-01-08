@@ -35,6 +35,7 @@ namespace BackEnd.Controllers
         public async Task<IActionResult> Create([FromBody] ItemCreateDto dto)
         {
             var result = await _inventory.Create(dto);
+            if (result is null) return BadRequest(result);
 
             return Ok(result);
         }
@@ -43,6 +44,7 @@ namespace BackEnd.Controllers
         public async Task<IActionResult> Update([FromBody] ItemUpdateDto dto)
         {
             var result = await _inventory.Update(dto);
+            if(result is null) return BadRequest(result);
 
             return Ok(result);
         }
