@@ -9,6 +9,8 @@ import { ItemDetailsComponent } from './item-details/item-details.component';
 import { RouterModule } from '@angular/router';
 import { ItemEditComponent } from './item-edit/item-edit.component';
 import { ItemNewComponent } from './item-new/item-new.component';
+import { CategoryDisplayPipe } from '../shared/category-display.pipe';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -22,6 +24,7 @@ import { ItemNewComponent } from './item-new/item-new.component';
     ItemNewComponent
   ],
   imports: [
+    SharedModule,
     CommonModule,
     MaterialModule,
     ReactiveFormsModule,
