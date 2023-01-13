@@ -35,6 +35,19 @@ export class IdentityService {
     return this.client.post<user_return_dto>(url, mockData);
   }
 
+  register(user: any): Observable<user_return_dto> {
+    let url = `${environment.mockServerIdentity}/register`;
+
+    let mockData = {
+      "username": user.username,
+      "email": user.email,
+      "phone": user.phone,
+      "password": user.password 
+    }
+
+    return this.client.post<user_return_dto>(url, mockData);
+  }
+
   setCurrentUser(user: user): void {
     localStorage.setItem('user',JSON.stringify(user));
   }
