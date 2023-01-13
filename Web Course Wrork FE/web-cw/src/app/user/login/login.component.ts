@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { user } from 'src/app/data/models/user';
+import { IdentityService } from 'src/app/services/identity.service';
 
 @Component({
   selector: 'cw-login',
@@ -12,7 +14,11 @@ export class LoginComponent implements OnInit {
   formGroup:FormGroup;
 
 
-  constructor(private formBuilder:FormBuilder, private router:Router) {
+  constructor(
+    private formBuilder:FormBuilder,
+    private router:Router,
+    private identity:IdentityService
+    ) {
 
     this.formGroup = formBuilder.group({
       email: ["",Validators.required],
@@ -25,21 +31,17 @@ export class LoginComponent implements OnInit {
   }
 
   async onLogin(): Promise<void> {
-    // let dto: login_send_dto = {
-    //   Email: this.formGroup.get('email')?.value,
-    //   Password: this.formGroup.get('password')?.value
-    // }
+    this.identity.login({username:"userName",password:"password"})
+    .subscribe(next =>{
+      let loggedUser:user = {id: next.id, email: next.email, username: next.username, phone: next.phone};
 
-
-    // this.identityService.logIn(dto).subscribe(
-    //   next => {
-    //     console.log(next);
-    //     this.identityService.saveUserId(next.id);
-    //     this.identityService.saveUserType(next.userType);
-    //     this.identityService.loggedIn.next(true);
-    //     this.router.navigate(['/profile',this.identityService.getUserId()]);
-    //   }
-    // );
+      this.identity.setCurrentUser(loggedUser);
+      this.identity.loggedIn.next(true);
+      this.router.navigate(['catalog']);
+    },
+    error => {
+      //TODO: Add pop-up with error message
+    });
   }
 
 }
