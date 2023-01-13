@@ -34,4 +34,9 @@
     Add Item
   </button>
 
+  <button mat-button *ngIf="isLoggedIn" (click)="resetPassword()">
+    <mat-icon>exit_to_app</mat-icon>
+    Reset Password
+  </button>
+
 </mat-toolbar>

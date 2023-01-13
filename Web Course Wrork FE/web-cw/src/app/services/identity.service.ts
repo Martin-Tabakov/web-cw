@@ -62,4 +62,14 @@ export class IdentityService {
     return data? JSON.parse(data) : null;
   }
 
+  resetPassword(user: user): Observable<boolean> {
+    let data = {
+      "id": user.id,
+      "email": user.email
+    }
+    let url = `${environment.mockServerIdentity}/reset`;
+
+    return this.client.post<boolean>(url,data);
+  }
+
 }
