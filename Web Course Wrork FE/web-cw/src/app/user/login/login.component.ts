@@ -31,6 +31,9 @@ export class LoginComponent implements OnInit {
   }
 
   async onLogin(): Promise<void> {
+
+    if(!this.formGroup.valid) return;
+
     this.identity.login({username:"userName",password:"password"})
     .subscribe(next =>{
       let loggedUser:user = {id: next.id, email: next.email, username: next.username, phone: next.phone};

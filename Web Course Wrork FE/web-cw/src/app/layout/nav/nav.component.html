@@ -24,10 +24,10 @@
     Log Out
   </button>
 
-  <button mat-button *ngIf="!isLoggedIn" (click)="forceLogin()">
+  <!-- <button mat-button *ngIf="!isLoggedIn" (click)="forceLogin()">
     <mat-icon>exit_to_app</mat-icon>
     Force login
-  </button>
+  </button> -->
 
   <button mat-button *ngIf="isLoggedIn" [routerLink]="['/new']">
     <mat-icon>add_box</mat-icon>
