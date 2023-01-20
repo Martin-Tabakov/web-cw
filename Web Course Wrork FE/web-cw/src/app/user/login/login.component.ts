@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { user } from 'src/app/data/models/user';
 import { IdentityService } from 'src/app/services/identity.service';
 
 @Component({
@@ -41,16 +42,19 @@ export class LoginComponent implements OnInit {
     //   Password: this.formGroup.get('password')?.value
     // }
 
+    if(!this.formGroup.valid) return;
 
-    // this.identityService.logIn(dto).subscribe(
-    //   next => {
-    //     console.log(next);
-    //     this.identityService.saveUserId(next.id);
-    //     this.identityService.saveUserType(next.userType);
-    //     this.identityService.loggedIn.next(true);
-    //     this.router.navigate(['/profile',this.identityService.getUserId()]);
-    //   }
-    // );
+    this.identityService.login({username:"userName",password:"password"})
+    .subscribe(next =>{
+      let loggedUser:user = {id: next.id, email: next.email, username: next.username, phone: next.phone};
+
+      this.identityService.setCurrentUser(loggedUser);
+      this.identityService.loggedIn.next(true);
+      this.router.navigate(['catalog']);
+    },
+    error => {
+      //TODO: Add pop-up with error message
+    });
   }
 
 }

@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  inventoryBackEndUrl:"https://localhost:7240/Inventory"
+  inventoryBackEndUrl:"https://localhost:7240/Inventory",
+  mockServerIdentity:"https://c0f24584-2859-44b9-9871-6d91148750f0.mock.pstmn.io"
 };
 
 /*

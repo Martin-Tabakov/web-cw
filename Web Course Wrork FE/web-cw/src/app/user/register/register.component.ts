@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { IdentityService } from 'src/app/services/identity.service';
 
 @Component({
   selector: 'cw-register',
@@ -11,12 +12,16 @@ export class RegisterComponent implements OnInit {
 
   formGroup: FormGroup;
 
-  constructor(private formBuilder:FormBuilder, private router:Router) {
+  constructor(
+    private formBuilder:FormBuilder,
+    private router:Router,
+    private identity:IdentityService
+    ) {
     this.formGroup = this.formBuilder.group({
-      email: ["",Validators.required],
-      password: ["",Validators.required],
-      name: ["",Validators.required],
-      type_choice:  ["",Validators.required]
+      username: ["",[Validators.required, Validators.minLength(5), Validators.maxLength(15)]],
+      phone: ["", Validators.required],
+      email: ["",[Validators.required, Validators.email]],
+      password: ["",[Validators.required, Validators.minLength(6), Validators.maxLength(20)]],
     });
   }
 
@@ -24,6 +29,24 @@ export class RegisterComponent implements OnInit {
   }
 
   async onRegister(): Promise<void> {
+
+    if(!this.formGroup.valid) return;
+
+    let mockData = {
+      username: "userName",
+      email: "user@mail.com",
+      password:"pass",
+      phone: "0888888880"
+    }
+
+    this.identity.register(mockData).subscribe(next => {
+      this.identity.setCurrentUser(next);
+      this.identity.loggedIn.next(true);
+      this.router.navigate(['catalog']);
+    },
+    error => {
+      //TODO: Display pop-up with error message
+    })
     // let is_user:boolean = (this.formGroup.get('type_choice')?.value == true)? true: false;
 
     // let dto: register_send_dto = {
