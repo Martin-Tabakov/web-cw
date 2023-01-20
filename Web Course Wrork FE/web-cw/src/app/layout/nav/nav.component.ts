@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { EmailClientService } from 'src/app/services/email-client.service';
 import { IdentityService } from 'src/app/services/identity.service';
 
 @Component({
@@ -13,7 +14,8 @@ export class NavComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private identityService: IdentityService
+    private identityService: IdentityService,
+    private emailClientService: EmailClientService
     ) { }
 
   ngOnInit(): void {
@@ -33,5 +35,10 @@ export class NavComponent implements OnInit {
 
   forceLogin(): void {
     this.identityService.loggedIn.next(true);
+  }
+
+  resetPassword(): void {
+    let currentUser = this.identityService.getCurrentUser();
+    this.emailClientService.sendResetPasswordMail(currentUser);
   }
 }
