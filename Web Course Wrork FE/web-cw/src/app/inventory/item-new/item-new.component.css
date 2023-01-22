@@ -1,0 +1,12 @@
+.container {
+    width: 510px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+}
+
+button{
+    margin: 10px;
+}

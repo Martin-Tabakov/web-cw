@@ -4,6 +4,14 @@
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>11bf51db-818a-4ba9-a2cc-c587c8cf6ea7</UserSecretsId>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Controllers\" />
+    <PackageReference Include="FluentEmail.Core" Version="3.0.2" />
+    <PackageReference Include="FluentEmail.Smtp" Version="3.0.2" />
+    <PackageReference Include="StackExchange.Redis" Version="2.6.90" />
+  </ItemGroup>
 
 </Project>

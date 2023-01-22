@@ -1,0 +1,42 @@
+<mat-toolbar color="primary">
+  <button mat-button (click)="homeButtonClicked()">
+    <mat-icon>home</mat-icon>
+    Home Page
+  </button>
+
+  <button mat-button *ngIf="!isLoggedIn" [routerLink]="['/login']">
+    <mat-icon>login</mat-icon>
+    Log In
+  </button>
+
+  <button mat-button *ngIf="!isLoggedIn" [routerLink]="['/register']">
+    <mat-icon>person</mat-icon>
+    Register
+  </button>
+
+  <button mat-button *ngIf="isLoggedIn" [routerLink]="['/catalog']">
+    <mat-icon>list</mat-icon>
+    Catalog
+  </button>
+
+  <button mat-button *ngIf="isLoggedIn" (click)="logout()">
+    <mat-icon>exit_to_app</mat-icon>
+    Log Out
+  </button>
+
+  <!-- <button mat-button *ngIf="!isLoggedIn" (click)="forceLogin()">
+    <mat-icon>exit_to_app</mat-icon>
+    Force login
+  </button> -->
+
+  <button mat-button *ngIf="isLoggedIn" [routerLink]="['/new']">
+    <mat-icon>add_box</mat-icon>
+    Add Item
+  </button>
+
+  <button mat-button *ngIf="isLoggedIn" (click)="resetPassword()">
+    <mat-icon>exit_to_app</mat-icon>
+    Reset Password
+  </button>
+
+</mat-toolbar>

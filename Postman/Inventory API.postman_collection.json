@@ -1,0 +1,159 @@
+{
+	"info": {
+		"_postman_id": "4e122c87-75ff-4c20-83c7-5e8dfea1c3bf",
+		"name": "Inventory API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "15902783"
+	},
+	"item": [
+		{
+			"name": "Get All",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "accept",
+						"value": "*/*"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:7240/Inventory/all",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7240",
+					"path": [
+						"Inventory",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get By Id",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "accept",
+						"value": "*/*"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:7240/Inventory?id=bbfe84bf-93a0-4265-9cbb-887413d3e382",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7240",
+					"path": [
+						"Inventory"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "bbfe84bf-93a0-4265-9cbb-887413d3e382"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Item",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "accept",
+						"value": "*/*"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"name\",\n  \"description\": \"desc\",\n  \"purchasePrice\": 1,\n  \"retailPrice\": 2,\n  \"quantity\": 3,\n  \"productCode\": \"code\",\n  \"category\": 0\n}"
+				},
+				"url": {
+					"raw": "https://localhost:7240/Inventory",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7240",
+					"path": [
+						"Inventory"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Item",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "accept",
+						"value": "*/*"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"id\": \"b0aa952e-18be-4954-9c98-42d7ea097805\",\n  \"name\": \"name\",\n  \"description\": \"desc\",\n  \"purchasePrice\": 222.2,\n  \"retailPrice\": 2.2,\n  \"quantity\": 3,\n  \"productCode\": \"code\",\n  \"category\": 0\n}"
+				},
+				"url": {
+					"raw": "https://localhost:7240/Inventory",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7240",
+					"path": [
+						"Inventory"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Item",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "accept",
+						"value": "*/*"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:7240/Inventory?id=b0aa952e-18be-4954-9c98-42d7ea097805",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7240",
+					"path": [
+						"Inventory"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "b0aa952e-18be-4954-9c98-42d7ea097805"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

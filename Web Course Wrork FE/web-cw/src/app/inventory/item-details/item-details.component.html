@@ -1,0 +1,21 @@
+<mat-card class="container">
+  <mat-card-title>
+    {{item?.name}}
+  </mat-card-title>
+
+  <span>Purchase Price: {{item?.purchasePrice}} Retail Price: {{item?.retailPrice}} Quantity: {{item?.quantity}} </span>
+  <span> Production Code: {{item?.productCode}} Category: {{item?.category | categoryDisplay}} </span>
+
+  <mat-card-content>
+    {{item?.description}}
+  </mat-card-content>
+
+  <mat-card-actions>
+    <button class="spaced-button" mat-raised-button color="primary" [routerLink]="['/edit', item?.id,]">
+      <mat-icon>edit</mat-icon> Edit
+    </button>
+    <button class="spaced-button" mat-raised-button color="accent" (click)="initiateDelete(item?.id)">
+      <mat-icon>delete</mat-icon>Delete
+    </button>
+  </mat-card-actions>
+</mat-card>
