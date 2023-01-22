@@ -32,14 +32,14 @@ export class RegisterComponent implements OnInit {
 
     if(!this.formGroup.valid) return;
 
-    let mockData = {
-      username: "userName",
-      email: "user@mail.com",
-      password:"pass",
-      phone: "0888888880"
+    let dto = {
+      email: this.formGroup.get('email')?.value,
+      username: this.formGroup.get('username')?.value,
+      phone: this.formGroup.get('phone')?.value,
+      password: this.formGroup.get('password')?.value
     }
 
-    this.identity.register(mockData).subscribe(next => {
+    this.identity.register(dto).subscribe(next => {
       this.identity.setCurrentUser(next);
       this.identity.loggedIn.next(true);
       this.router.navigate(['catalog']);
@@ -47,20 +47,5 @@ export class RegisterComponent implements OnInit {
     error => {
       //TODO: Display pop-up with error message
     })
-    // let is_user:boolean = (this.formGroup.get('type_choice')?.value == true)? true: false;
-
-    // let dto: register_send_dto = {
-    //   Email: this.formGroup.get('email')?.value,
-    //   Name: this.formGroup.get('name')?.value,
-    //   Password: this.formGroup.get('password')?.value
-    // }
-
-    // this.identityService.register(dto,is_user).subscribe(next => {
-      
-    //   this.identityService.saveUserId(next.id);
-    //   this.identityService.saveUserType(next.userType);
-      
-    //   this.router.navigate(['/profile',this.identityService.getUserId()])
-    // })
   }
 }

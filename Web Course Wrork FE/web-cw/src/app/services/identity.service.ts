@@ -25,10 +25,10 @@ export class IdentityService {
   }
 
   login(user: any): Observable<user_return_dto> {
-    let url = `${environment.mockServerIdentity}/login`;
+    let url = `${environment.identityUrl}/login`;
 
     let mockData = {
-      "username": user.username,
+      "email": user.email,
       "password": user.password 
     }
 
@@ -36,7 +36,7 @@ export class IdentityService {
   }
 
   register(user: any): Observable<user_return_dto> {
-    let url = `${environment.mockServerIdentity}/register`;
+    let url = `${environment.identityUrl}/register`;
 
     let mockData = {
       "username": user.username,
@@ -62,12 +62,14 @@ export class IdentityService {
     return data? JSON.parse(data) : null;
   }
 
-  resetPassword(user: user): Observable<boolean> {
+  resetPassword(user: any): Observable<boolean> {
     let data = {
-      "id": user.id,
-      "email": user.email
+      "Id": user.Id,
+      "NewPassword": user.NewPassword
     }
-    let url = `${environment.mockServerIdentity}/reset`;
+    let url = `${environment.identityUrl}/reset`;
+
+    console.log(data);
 
     return this.client.post<boolean>(url,data);
   }

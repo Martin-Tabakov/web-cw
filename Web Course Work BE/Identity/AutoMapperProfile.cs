@@ -9,7 +9,7 @@ namespace BackEnd
         public AutoMapperProfile()
         {
             CreateMap<User, UserReturnDTO>();
-            CreateMap<UserLogInDto, User>();
+            CreateMap<UserLoginDTO, User>();
             CreateMap<UserRegisterDTO, User>();
         }
     }

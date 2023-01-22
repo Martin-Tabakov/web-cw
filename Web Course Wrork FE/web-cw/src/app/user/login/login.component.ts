@@ -34,17 +34,14 @@ export class LoginComponent implements OnInit {
 
   async onLogin(): Promise<void> {
 
-    this.identityService.login().subscribe(next => {
-      if(!next) this.loginNotification.open("Failed to log in.", "Close");
-    })
-    // let dto: login_send_dto = {
-    //   Email: this.formGroup.get('email')?.value,
-    //   Password: this.formGroup.get('password')?.value
-    // }
-
     if(!this.formGroup.valid) return;
 
-    this.identityService.login({username:"userName",password:"password"})
+    let userLoginData = {
+      email: this.formGroup.get('email')?.value,
+      password: this.formGroup.get('password')?.value
+    }
+
+    this.identityService.login(userLoginData)
     .subscribe(next =>{
       let loggedUser:user = {id: next.id, email: next.email, username: next.username, phone: next.phone};
 
@@ -53,7 +50,7 @@ export class LoginComponent implements OnInit {
       this.router.navigate(['catalog']);
     },
     error => {
-      //TODO: Add pop-up with error message
+      this.loginNotification.open("Failed to log in.", "Close");
     });
   }
 

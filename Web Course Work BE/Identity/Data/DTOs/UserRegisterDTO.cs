@@ -12,7 +12,7 @@ namespace Identity.Data.DTOs
         [EmailAddress]
         public string Email { get; set; }
 
-        public string Phone { get; set; }
+        public string Phone { get; set; } = String.Empty;
         [Required]
         public string Password { get; set; }
     }

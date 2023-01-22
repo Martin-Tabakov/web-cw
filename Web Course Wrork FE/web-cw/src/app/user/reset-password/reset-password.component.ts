@@ -13,6 +13,8 @@ export class ResetPasswordComponent implements OnInit {
 
   formGroup:FormGroup;
 
+   id?:string;
+
   constructor(
     private formBuilder:FormBuilder,
     private route: ActivatedRoute,
@@ -20,8 +22,8 @@ export class ResetPasswordComponent implements OnInit {
     private identity: IdentityService
   ) {
     this.formGroup = formBuilder.group({
-      pass: ["",Validators.required],
-      repeatPass: ["",Validators.required]
+      pass: ["",[Validators.required, Validators.minLength(6), Validators.maxLength(20)]],
+      repeatPass: ["",[Validators.required, Validators.minLength(6), Validators.maxLength(20)]]
     });
    }
 
@@ -29,6 +31,7 @@ export class ResetPasswordComponent implements OnInit {
     this.route.paramMap.pipe(
       switchMap(params => {
         let id = String(params.get('id'));
+        this.id = id;
         return id;
       })).subscribe(next =>{
 
@@ -36,8 +39,7 @@ export class ResetPasswordComponent implements OnInit {
   }
 
   onSubmit(): void {
-    let currentUser = this.identity.getCurrentUser();
-    this.identity.resetPassword(currentUser).subscribe(next => {
+    this.identity.resetPassword({Id:this.id,NewPassword: this.formGroup.get("pass")?.value}).subscribe(next => {
       this.identity.clearCurrentUser();
       this.identity.loggedIn.next(false);
       this.router.navigate(['login']);

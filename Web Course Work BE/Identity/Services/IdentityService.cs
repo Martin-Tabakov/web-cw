@@ -32,5 +32,25 @@ namespace Identity.Services
 
             return result;
         }
+
+        public async Task<UserReturnDTO> Login(UserLoginDTO loginDTO)
+        {
+            var user = await _context.Users.FirstOrDefaultAsync(x => x.Email.Equals(loginDTO.Email) && x.Password.Equals(loginDTO.Password));
+
+            if (user == null) return null;
+
+            return _mapper.Map<UserReturnDTO>(user);
+        }
+
+        public async Task<UserReturnDTO> ResetPassword(ResetPasswordDTO resetPasswordDTO)
+        {
+            var user = await _context.Users.FirstOrDefaultAsync(x => x.Id.Equals(resetPasswordDTO.Id));
+            if (user == null) return null;
+
+            user.Password = resetPasswordDTO.NewPassword;
+            await _context.SaveChangesAsync();
+
+            return _mapper.Map<UserReturnDTO>(user);
+        }
     }
 }
